@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player1 = Player("wei peluso", room['outside'])
+
 
 # Write a loop that:
 #
@@ -49,3 +52,43 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+# Declare current room
+print(player1.room.name)
+curr_room = player1.room
+
+while True:
+    print(player1)
+    command = input(
+        "please enter the command, n for north, s for south, e for east, w for west , q for quit:  ")
+    if (command == 'q'):
+        break
+    elif (command == 'n'):
+        try:
+            curr_room = player1.room.n_to
+            player1.room = curr_room
+            print(f"You are in room : {curr_room}")
+        except AttributeError:
+            print(f'\n{player1.name} turned north and ran into a dead end!')
+    elif (command == 'w'):
+        try:
+            curr_room = player1.room.w_to
+            player1.room = curr_room
+            print(f"You are in room : {curr_room}")
+        except AttributeError:
+            print(f'\n{player1.name} turned west and ran into a dead end!')
+    elif (command == 'e'):
+        try:
+            curr_room = player1.room.e_to
+            player1.room = curr_room
+            print(f"You are in room : {curr_room}")
+        except AttributeError:
+            print(f'\n{player1.name} turned east and ran into a dead end!')
+    elif (command == 's'):
+        try:
+            curr_room = player1.room.s_to
+            player1.room = curr_room
+            print(f"You are in room : {curr_room}")
+        except AttributeError:
+            print(f'\n{player1.name} turned south and ran into a dead end!')
